@@ -10,7 +10,6 @@ const Login = () => {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Login</Text>
       <TextInput
         label="Username"
         placeholder="Enter your e-mail"
