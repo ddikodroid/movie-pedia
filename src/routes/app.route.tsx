@@ -2,7 +2,12 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Home, Login} from '../screens';
 
-const App = createStackNavigator();
+export type AppStackParamList = {
+  login: undefined;
+  home: undefined;
+};
+
+const App = createStackNavigator<AppStackParamList>();
 
 export default function AppRoute() {
   return (

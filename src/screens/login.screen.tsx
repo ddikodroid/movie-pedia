@@ -1,12 +1,19 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {Button} from '../components/atoms/button';
 import {Gap} from '../components/atoms/gap';
 import {TextInput} from '../components/molecules/text-input';
+import {AppStackParamList} from '../routes/app.route';
 
-const Login = () => {
+type LoginScreenPropNav = StackNavigationProp<AppStackParamList, 'login'>;
+type LoginScreenProps = {
+  navigation: LoginScreenPropNav;
+};
+
+const Login = ({navigation}: LoginScreenProps) => {
   function onLogin() {
-    console.log('Login');
+    navigation.replace('home');
   }
   return (
     <SafeAreaView style={styles.container}>
