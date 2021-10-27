@@ -4,7 +4,7 @@ import {Home, Login} from '../screens';
 
 export type AppStackParamList = {
   login: undefined;
-  home: undefined;
+  home: {username: string};
 };
 
 const App = createStackNavigator<AppStackParamList>();
