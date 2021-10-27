@@ -12,8 +12,9 @@ type LoginScreenProps = {
 };
 
 const Login = ({navigation}: LoginScreenProps) => {
+  const username = 'username';
   function onLogin() {
-    navigation.replace('home');
+    navigation.replace('home', {username});
   }
   return (
     <SafeAreaView style={styles.container}>
