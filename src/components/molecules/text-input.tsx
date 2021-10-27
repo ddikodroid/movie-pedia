@@ -13,7 +13,7 @@ import Icon from 'react-native-dynamic-vector-icons';
 
 interface ITextInputProps extends TextInputProps {
   placeholder: string;
-  label: string;
+  label?: string;
   infoMessage?: string;
   containerStyle?: StyleProp<ViewStyle>;
   withIcon?: boolean;
