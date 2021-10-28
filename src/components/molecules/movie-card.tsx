@@ -1,6 +1,8 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {MovieType} from '../../screens/home.screen';
+import {colors} from '../../styles/colors';
 import {Gap} from '../atoms/gap';
 
 // export type IMovieCardProps = {
@@ -8,8 +10,9 @@ import {Gap} from '../atoms/gap';
 // };
 
 const MovieCard: React.FC<any> = item => {
+  const navigation = useNavigation<any>();
   const navigateToDetail = () => {
-    console.log(item);
+    navigation.navigate('detail', {item});
   };
   return (
     <Pressable onPress={navigateToDetail} style={styles.cardContainer}>
@@ -39,7 +42,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   titleText: {
-    color: '#e8e8e8',
+    color: colors.white,
     fontSize: 16,
     textAlign: 'center',
     fontWeight: '600',
