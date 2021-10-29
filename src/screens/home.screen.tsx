@@ -43,36 +43,18 @@ const Home = ({navigation, route}: HomeScreenProps) => {
   const {username} = route.params;
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
-  const [latestMovie, setLatestMovie] = useState<MovieType[] | []>([]);
+  const [latestMovie, setLatestMovie] = useState<any>([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    const getLatestMovie = async () => {
-      axios
-        .get('https://api-filmapik.herokuapp.com/latest?maxResult=10?page=1')
-        .then(response => {
-          setLatestMovie(response.data.result);
-          setLoading(false);
-        })
-        .catch(error => Alert.alert('Request Failed ' + error));
-    };
-    getLatestMovie();
-  }, []);
-
-  useEffect(() => {
-    const getLatestMovie = async () => {
+    const getLatestMovie = () => {
       axios
         .get(
-          `https://api-filmapik.herokuapp.com/latest?maxResults=6?page=${page}`,
+          `https://api-filmapik.herokuapp.com/latest?page=${page}&maxResult=6`,
         )
         .then(response => {
-          if (page > 1) {
-            let arr = [...latestMovie, response.data.result];
-            setLatestMovie(arr);
-          } else {
-            console.log(response.data);
-            setLatestMovie(response.data.result);
-          }
+          setLatestMovie([...latestMovie, ...response.data.result]);
+          setLoading(false);
         })
         .catch(error => Alert.alert('Request Failed ' + error));
     };
@@ -83,7 +65,10 @@ const Home = ({navigation, route}: HomeScreenProps) => {
     console.log(query);
     setQuery('');
   };
-
+  const loadMore = () => {
+    setLoading(true);
+    setPage(page + 1);
+  };
   const renderLatestMovies = result => {
     return <MovieCard {...result.item} />;
   };
@@ -132,11 +117,10 @@ const Home = ({navigation, route}: HomeScreenProps) => {
         renderItem={renderLatestMovies}
         numColumns={2}
         style={styles.scrollableContainer}
-        ListEmptyComponent={renderMovieCardSkeleton}
+        // ListEmptyComponent={renderMovieCardSkeleton}
         contentContainerStyle={styles.contentContainer}
-        onEndReached={() => {
-          return setPage(page + 1);
-        }}
+        ListFooterComponent={loading ? renderMovieCardSkeleton : null}
+        onEndReached={loadMore}
         onEndReachedThreshold={0}
       />
     </SafeAreaView>
