@@ -11,6 +11,7 @@ import {
 import {Gap} from '../atoms/gap';
 import Icon from 'react-native-dynamic-vector-icons';
 import {normalize} from '../../utils/normalize';
+import {colors} from '../../styles/colors';
 
 interface ITextInputProps extends TextInputProps {
   placeholder: string;
@@ -43,14 +44,14 @@ const TextInput: React.FC<ITextInputProps> = ({
           <RNTextInput
             style={styles.textInputWithIcon}
             placeholder={placeholder}
-            placeholderTextColor="#8d8d8d"
+            placeholderTextColor={colors.lightGrey}
             {...props}
           />
           <Icon
             name={iconName}
             type="Ionicons"
             size={iconSize}
-            color="#2d2d2d"
+            color={colors.darkGrey}
             onPress={onPressIcon}
           />
         </View>
@@ -58,7 +59,7 @@ const TextInput: React.FC<ITextInputProps> = ({
         <RNTextInput
           style={styles.rnTextInputContainer}
           placeholder={placeholder}
-          placeholderTextColor="#8d8d8d"
+          placeholderTextColor={colors.lightGrey}
           {...props}
         />
       )}
@@ -72,7 +73,7 @@ export {TextInput};
 
 const styles = StyleSheet.create({
   rnTextInputContainer: {
-    backgroundColor: '#e8e8e8',
+    backgroundColor: colors.white,
     borderRadius: normalize(8),
     paddingVertical: normalize(16),
     paddingHorizontal: normalize(8),
@@ -87,18 +88,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#e8e8e8',
+    backgroundColor: colors.white,
     borderRadius: normalize(8),
     paddingVertical: normalize(16),
     paddingHorizontal: normalize(8),
   },
   labelText: {
-    color: '#f8f8f8',
+    color: colors.white,
     fontSize: normalize(16),
     fontWeight: '600',
   },
   infoMessageText: {
     fontSize: normalize(11),
-    color: '#be2831',
+    color: colors.red,
   },
 });
