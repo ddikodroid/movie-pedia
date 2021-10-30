@@ -8,12 +8,13 @@ import {
   ActivityIndicator,
   PressableProps,
 } from 'react-native';
+import {normalize} from '../../utils/normalize';
 
 interface IButtonProps extends PressableProps {
   onPress: () => void;
   title: string;
   loading?: boolean;
-  buttonStyle: ViewStyle;
+  buttonStyle?: ViewStyle;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -37,16 +38,16 @@ export {Button};
 
 const styles = StyleSheet.create({
   base: {
-    paddingVertical: 16,
-    paddingHorizontal: 8,
-    borderRadius: 8,
+    paddingVertical: normalize(16),
+    paddingHorizontal: normalize(8),
+    borderRadius: normalize(8),
     alignItems: 'center',
     backgroundColor: '#546ee5',
   },
   title: {
-    fontSize: 14,
+    fontSize: normalize(14),
     fontWeight: 'bold',
-    letterSpacing: 1.5,
+    letterSpacing: normalize(1.5),
     color: '#ffff',
   },
 });

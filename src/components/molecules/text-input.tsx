@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {Gap} from '../atoms/gap';
 import Icon from 'react-native-dynamic-vector-icons';
+import {normalize} from '../../utils/normalize';
 
 interface ITextInputProps extends TextInputProps {
   placeholder: string;
@@ -29,7 +30,7 @@ const TextInput: React.FC<ITextInputProps> = ({
   containerStyle,
   withIcon,
   iconName = 'search',
-  iconSize = 16,
+  iconSize = normalize(16),
   onPressIcon,
   ...props
 }) => {
@@ -72,13 +73,13 @@ export {TextInput};
 const styles = StyleSheet.create({
   rnTextInputContainer: {
     backgroundColor: '#e8e8e8',
-    borderRadius: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 8,
-    fontSize: 15,
+    borderRadius: normalize(8),
+    paddingVertical: normalize(16),
+    paddingHorizontal: normalize(8),
+    fontSize: normalize(15),
   },
   textInputWithIcon: {
-    fontSize: 15,
+    fontSize: normalize(15),
     width: '95%',
   },
 
@@ -87,17 +88,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#e8e8e8',
-    borderRadius: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 8,
+    borderRadius: normalize(8),
+    paddingVertical: normalize(16),
+    paddingHorizontal: normalize(8),
   },
   labelText: {
     color: '#f8f8f8',
-    fontSize: 16,
+    fontSize: normalize(16),
     fontWeight: '600',
   },
   infoMessageText: {
-    fontSize: 11,
+    fontSize: normalize(11),
     color: '#be2831',
   },
 });

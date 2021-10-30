@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-dynamic-vector-icons';
 import {colors} from '../../styles/colors';
+import {normalize} from '../../utils/normalize';
 
 export type IHeaderProps = {
   title: string;
@@ -23,7 +24,7 @@ const Header: React.FC<IHeaderProps> = ({title, leftContent, rightContent}) => {
           onPress={leftContent.onPress}
           name={leftContent.icon}
           type="Ionicons"
-          size={24}
+          size={normalize(24)}
           color={colors.white}
         />
       ) : (
@@ -37,7 +38,7 @@ const Header: React.FC<IHeaderProps> = ({title, leftContent, rightContent}) => {
           onPress={rightContent.onPress}
           name={rightContent.icon}
           type="Ionicons"
-          size={24}
+          size={normalize(24)}
           color={colors.white}
         />
       ) : (
@@ -56,13 +57,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 16,
+    padding: normalize(16),
   },
   headerTitle: {
     color: colors.white,
-    fontSize: 16,
+    fontSize: normalize(16),
     fontWeight: '800',
-    letterSpacing: 1.25,
+    letterSpacing: normalize(1.25),
     width: '70%',
   },
 });

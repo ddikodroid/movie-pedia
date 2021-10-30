@@ -3,6 +3,7 @@ import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {MovieType} from '../../screens/home.screen';
 import {colors} from '../../styles/colors';
+import {normalize} from '../../utils/normalize';
 import {Gap} from '../atoms/gap';
 
 // export type IMovieCardProps = {
@@ -32,18 +33,18 @@ export {MovieCard};
 const styles = StyleSheet.create({
   cardContainer: {
     width: '45%',
-    margin: 8,
+    margin: normalize(8),
     alignItems: 'center',
     justifyContent: 'center',
   },
   thumbnailPotrait: {
     width: '100%',
-    height: 250,
-    borderRadius: 16,
+    height: normalize(250),
+    borderRadius: normalize(16),
   },
   titleText: {
     color: colors.white,
-    fontSize: 16,
+    fontSize: normalize(16),
     textAlign: 'center',
     fontWeight: '600',
   },
