@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   infoMessageText: {
-    fontSize: normalize(11),
+    fontSize: normalize(12),
     color: colors.red,
   },
 });
