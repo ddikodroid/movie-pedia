@@ -7,6 +7,8 @@ import axios from 'axios';
 import {MovieCard} from '../components/molecules/movie-card';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import {SectionTitle} from '../components/atoms/section-title';
+import {SkeletonLoader} from '../components/atoms/skeleton-loader';
+import {MovieCardSkeleton} from '../components/molecules/movie-card-skeleton';
 
 type HomeScreenNavProp = StackNavigationProp<AppStackParamList, 'home'>;
 type HomeScreenRouteProp = RouteProp<AppStackParamList, 'home'>;
@@ -68,31 +70,7 @@ const Home = ({navigation}: HomeScreenProps) => {
   };
 
   const renderMovieCardSkeleton = () => (
-    <SkeletonPlaceholder>
-      <SkeletonPlaceholder.Item
-        flexDirection="row"
-        justifyContent="space-between"
-        marginHorizontal={8}>
-        <SkeletonPlaceholder.Item>
-          <SkeletonPlaceholder.Item width={170} height={220} borderRadius={8} />
-          <SkeletonPlaceholder.Item
-            width={170}
-            height={20}
-            borderRadius={8}
-            marginTop={8}
-          />
-        </SkeletonPlaceholder.Item>
-        <SkeletonPlaceholder.Item>
-          <SkeletonPlaceholder.Item width={170} height={220} borderRadius={8} />
-          <SkeletonPlaceholder.Item
-            width={170}
-            height={20}
-            borderRadius={8}
-            marginTop={8}
-          />
-        </SkeletonPlaceholder.Item>
-      </SkeletonPlaceholder.Item>
-    </SkeletonPlaceholder>
+    <SkeletonLoader loader={MovieCardSkeleton} />
   );
 
   return (
