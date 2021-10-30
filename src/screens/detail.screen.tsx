@@ -1,11 +1,12 @@
-import React from 'react';
-import {Linking, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {SafeAreaView, StyleSheet, Text, View, ScrollView} from 'react-native';
 import {Header} from '../components/molecules/header';
 import {colors} from '../styles/colors';
-import {Button} from '../components/atoms/button';
 import {DetailImage} from '../components/atoms/detail-image';
 import {SectionTitle} from '../components/atoms/section-title';
 import {normalize} from '../utils/normalize';
+import {Rating} from 'react-native-ratings';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 export type IDetailScreenProps = {
   navigation: any;
@@ -15,7 +16,12 @@ export type IDetailScreenProps = {
 const Detail: React.FC<IDetailScreenProps> = ({navigation, route}) => {
   const {item} = route.params;
   const strippedDesc = item.detail.description.substring(1);
-  console.log(item.detail.description);
+  const movieRating = item.rating === 'N/A' ? 1 : item.rating;
+  const videoId = item.detail?.trailer?.replace(
+    'https://www.youtube.com/embed/',
+    '',
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -25,22 +31,33 @@ const Detail: React.FC<IDetailScreenProps> = ({navigation, route}) => {
           onPress: () => navigation.goBack(),
         }}
       />
-      <DetailImage uri={item.detail.thumbnailLandscape} />
-      {item.detail.trailer !== null ? (
-        <Button
-          title="Play trailer video"
-          onPress={() => Linking.openURL(item.detail.trailer)}
-          buttonStyle={styles.playTrailerButton}
-        />
-      ) : null}
-      <View style={styles.margin}>
-        <SectionTitle title="Storyline" style={styles.detailSectionTitle} />
-        <Text style={styles.infoText}>{strippedDesc}</Text>
-        <SectionTitle title="Director" style={styles.detailSectionTitle} />
-        <Text style={styles.infoText}>{item.detail.director}</Text>
-        <SectionTitle title="Actors" style={styles.detailSectionTitle} />
-        <Text style={styles.infoText}>{item.detail.actors}</Text>
-      </View>
+      <ScrollView>
+        <DetailImage uri={item.detail.thumbnailLandscape} />
+        <View style={styles.margin}>
+          <SectionTitle title="Rating" style={styles.detailSectionTitle} />
+          <Rating
+            type="star"
+            startingValue={movieRating}
+            ratingCount={10}
+            imageSize={24}
+            readonly
+            tintColor={colors.primary}
+            style={styles.ratingContainer}
+          />
+          <SectionTitle title="Director" style={styles.detailSectionTitle} />
+          <Text style={styles.infoText}>{item.detail.director}</Text>
+          <SectionTitle title="Actors" style={styles.detailSectionTitle} />
+          <Text style={styles.infoText}>{item.detail.actors}</Text>
+          <SectionTitle title="Storyline" style={styles.detailSectionTitle} />
+          <Text style={styles.infoText}>{strippedDesc}</Text>
+          {item.detail.trailer !== null ? (
+            <>
+              <SectionTitle title="Trailer" style={styles.detailSectionTitle} />
+              <YoutubePlayer height={normalize(200)} videoId={videoId} />
+            </>
+          ) : null}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -57,7 +74,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     color: colors.white,
-    fontSize: normalize(14),
+    fontSize: normalize(15),
   },
   playTrailerButton: {
     backgroundColor: colors.primary,
@@ -67,4 +84,5 @@ const styles = StyleSheet.create({
     marginVertical: normalize(8),
     color: colors.lightGrey,
   },
+  ratingContainer: {alignSelf: 'flex-start'},
 });
