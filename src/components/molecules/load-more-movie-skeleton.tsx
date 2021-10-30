@@ -5,7 +5,8 @@ const LoadMoreSkeleton = (
   <SkeletonPlaceholder.Item
     flexDirection="row"
     justifyContent="space-between"
-    marginTop={16}>
+    marginTop={16}
+    marginHorizontal={16}>
     <SkeletonPlaceholder.Item>
       <SkeletonPlaceholder.Item width={160} height={220} borderRadius={8} />
       <SkeletonPlaceholder.Item
