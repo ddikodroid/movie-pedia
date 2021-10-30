@@ -24,7 +24,10 @@ const Button: React.FC<IButtonProps> = ({
   buttonStyle,
 }) => {
   return (
-    <Pressable onPress={onPress} style={[styles.base, buttonStyle]}>
+    <Pressable
+      onPress={onPress}
+      style={[styles.base, buttonStyle]}
+      disabled={loading}>
       {loading ? (
         <ActivityIndicator size="small" color="#fff" />
       ) : (
