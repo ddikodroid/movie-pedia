@@ -5,10 +5,10 @@ import {AppStackParamList} from '../routes/app.route';
 import {RouteProp} from '@react-navigation/core';
 import axios from 'axios';
 import {MovieCard} from '../components/molecules/movie-card';
-import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import {SectionTitle} from '../components/atoms/section-title';
 import {SkeletonLoader} from '../components/atoms/skeleton-loader';
 import {MovieCardSkeleton} from '../components/molecules/movie-card-skeleton';
+import {LoadMoreSkeleton} from '../components/molecules/load-more-movie-skeleton';
 
 type HomeScreenNavProp = StackNavigationProp<AppStackParamList, 'home'>;
 type HomeScreenRouteProp = RouteProp<AppStackParamList, 'home'>;
@@ -73,6 +73,10 @@ const Home = ({navigation}: HomeScreenProps) => {
     <SkeletonLoader loader={MovieCardSkeleton} />
   );
 
+  const renderLoadMoreMovieSkeleton = () => (
+    <SkeletonLoader loader={LoadMoreSkeleton} />
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <SectionTitle title="Latest Movies" style={styles.margin} />
@@ -81,9 +85,9 @@ const Home = ({navigation}: HomeScreenProps) => {
         renderItem={renderLatestMovies}
         numColumns={2}
         style={styles.scrollableContainer}
-        // ListEmptyComponent={renderMovieCardSkeleton}
+        ListEmptyComponent={renderMovieCardSkeleton}
         contentContainerStyle={styles.contentContainer}
-        ListFooterComponent={loading ? renderMovieCardSkeleton : null}
+        ListFooterComponent={loading ? renderLoadMoreMovieSkeleton : null}
         onEndReached={loadMore}
         onEndReachedThreshold={0}
       />
