@@ -11,7 +11,6 @@ import {
 import {normalize} from '../../utils/normalize';
 
 interface IButtonProps extends PressableProps {
-  onPress: () => void;
   title: string;
   loading?: boolean;
   buttonStyle?: ViewStyle;
