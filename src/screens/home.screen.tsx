@@ -39,9 +39,7 @@ interface IRenderLatestMovieProps {
   onPress: () => void;
 }
 
-const Home = ({navigation, route}: HomeScreenProps) => {
-  const {username} = route.params;
-  const [query, setQuery] = useState('');
+const Home = ({navigation}: HomeScreenProps) => {
   const [loading, setLoading] = useState(true);
   const [latestMovie, setLatestMovie] = useState<any>([]);
   const [page, setPage] = useState(1);
@@ -61,10 +59,6 @@ const Home = ({navigation, route}: HomeScreenProps) => {
     getLatestMovie();
   }, [page]);
 
-  const onSearch = () => {
-    console.log(query);
-    setQuery('');
-  };
   const loadMore = () => {
     setLoading(true);
     setPage(page + 1);
@@ -103,14 +97,6 @@ const Home = ({navigation, route}: HomeScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <TextInput
-        placeholder={'Search movies...'}
-        withIcon
-        iconName="search"
-        onChangeText={text => setQuery(text)}
-        onPressIcon={onSearch}
-        containerStyle={styles.margin}
-      /> */}
       <SectionTitle title="Latest Movies" style={styles.margin} />
       <FlatList
         data={latestMovie}
