@@ -5,10 +5,10 @@ import {AppStackParamList} from '../routes/app.route';
 import {RouteProp} from '@react-navigation/core';
 import axios from 'axios';
 import {MovieCard} from '../components/molecules/movie-card';
-import {SectionTitle} from '../components/atoms/section-title';
 import {SkeletonLoader} from '../components/atoms/skeleton-loader';
 import {MovieCardSkeleton} from '../components/molecules/movie-card-skeleton';
 import {LoadMoreSkeleton} from '../components/molecules/load-more-movie-skeleton';
+import {Header} from '../components/molecules/header';
 
 type HomeScreenNavProp = StackNavigationProp<AppStackParamList, 'home'>;
 type HomeScreenRouteProp = RouteProp<AppStackParamList, 'home'>;
@@ -79,7 +79,7 @@ const Home = ({navigation}: HomeScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SectionTitle title="Latest Movies" style={styles.margin} />
+      <Header title="Latest Movies" />
       <FlatList
         data={latestMovie}
         renderItem={renderLatestMovies}
