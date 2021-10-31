@@ -77,15 +77,6 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
         leftContent={{icon: 'arrow-back', onPress: () => navigation.goBack()}}
       />
       <View style={styles.searchBarContainer}>
-        <TextInput
-          placeholder={'Search movies...'}
-          withIcon
-          iconName="search"
-          onChangeText={text => setQuery(text)}
-          onPressIcon={() => getSearchResult({c: category, q: query, p: page})}
-          containerStyle={styles.textInputContainer}
-          style={styles.textInput}
-        />
         <SelectDropdown
           data={searchCategories}
           defaultValueByIndex={0}
@@ -102,6 +93,15 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
           rowTextForSelection={item => {
             return item;
           }}
+        />
+        <TextInput
+          placeholder={'Search movies...'}
+          withIcon
+          iconName="search"
+          onChangeText={text => setQuery(text)}
+          onPressIcon={() => getSearchResult({c: category, q: query, p: page})}
+          containerStyle={styles.textInputContainer}
+          style={styles.textInput}
         />
       </View>
       <FlatList
