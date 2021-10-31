@@ -9,6 +9,7 @@ import {SkeletonLoader} from '../components/atoms/skeleton-loader';
 import {MovieCardSkeleton} from '../components/molecules/movie-card-skeleton';
 import {LoadMoreSkeleton} from '../components/molecules/load-more-movie-skeleton';
 import {Header} from '../components/molecules/header';
+import {SearchCard} from '../components/organisms/search-card';
 
 type HomeScreenNavProp = StackNavigationProp<AppStackParamList, 'home'>;
 type HomeScreenRouteProp = RouteProp<AppStackParamList, 'home'>;
@@ -77,6 +78,8 @@ const Home = ({navigation}: HomeScreenProps) => {
     <SkeletonLoader loader={LoadMoreSkeleton} />
   );
 
+  const renderHeaderComponent = () => <SearchCard />;
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Latest Movies" />
@@ -87,6 +90,7 @@ const Home = ({navigation}: HomeScreenProps) => {
         style={styles.scrollableContainer}
         ListEmptyComponent={renderMovieCardSkeleton}
         contentContainerStyle={styles.contentContainer}
+        ListHeaderComponent={renderHeaderComponent}
         ListFooterComponent={loading ? renderLoadMoreMovieSkeleton : null}
         onEndReached={loadMore}
         onEndReachedThreshold={0}
