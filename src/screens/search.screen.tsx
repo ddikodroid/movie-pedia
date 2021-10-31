@@ -11,6 +11,7 @@ import {
 import SelectDropdown from 'react-native-select-dropdown';
 import {SkeletonLoader} from '../components/atoms/skeleton-loader';
 import {Header} from '../components/molecules/header';
+import {LoadMoreSkeleton} from '../components/molecules/load-more-movie-skeleton';
 import {MovieCard} from '../components/molecules/movie-card';
 import {MovieCardSkeleton} from '../components/molecules/movie-card-skeleton';
 import {TextInput} from '../components/molecules/text-input';
@@ -25,34 +26,43 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
   const searchCategories = ['Country', 'Genre'];
   const [category, setCategory] = useState(searchCategories[0]);
   const [query, setQuery] = useState('');
-  const [seearchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   const getSearchResult = () => {
-  //     axios
-  //       .get(`https://api-filmapik.herokuapp.com/${category}?search=${query}`)
-  //       .then(response => {
-  //         setSearchResult([...seearchResult, ...response.data.result]);
-  //         setLoading(false);
-  //       })
-  //       .catch(error => Alert.alert('Request Failed ' + error));
-  //   };
-  //   if (query !== '') getSearchResult();
-  // }, [query, category]);
+  const [page, setPage] = useState(1);
+  useEffect(() => {
+    const search = getSearchResult({c: category, q: query, p: page});
+    return () => {
+      search;
+    };
+  }, [page]);
 
-  // const onSearch = ({q, c}) => {};
-
-  const getSearchResult = ({category, query}) => {
-    axios
-      .get(`https://api-filmapik.herokuapp.com/${category}?search=${query}`)
-      .then(response => {
-        setSearchResult([...seearchResult, ...response.data.result]);
-        setLoading(false);
-      })
-      .catch(error => Alert.alert('Request Failed ' + error));
+  const getSearchResult = ({c, q, p}) => {
+    if (query !== '') {
+      const cat = c === 'Genre' ? 'category' : c.toLowerCase();
+      axios
+        .get(
+          `https://api-filmapik.herokuapp.com/${cat}?search=${q}&page=${p}&maxResult=20`,
+        )
+        .then(response => {
+          console.log(response);
+          setSearchResult([...searchResult, ...response.data.result]);
+          setLoading(false);
+        })
+        .catch(error => Alert.alert('Request Failed ' + error));
+    } else {
+      return Alert.alert('Search field is empty');
+    }
   };
 
   console.log(query);
+  const loadMore = () => {
+    setLoading(true);
+    setPage(page + 1);
+  };
+
+  const renderLoadMoreMovieSkeleton = () => (
+    <SkeletonLoader loader={LoadMoreSkeleton} />
+  );
 
   const renderSearchResult = result => {
     return <MovieCard {...result.item} />;
@@ -72,7 +82,7 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
           withIcon
           iconName="search"
           onChangeText={text => setQuery(text)}
-          onPressIcon={() => getSearchResult({category, query})}
+          onPressIcon={() => getSearchResult({c: category, q: query, p: page})}
           containerStyle={styles.textInputContainer}
           style={styles.textInput}
         />
@@ -95,12 +105,14 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
         />
       </View>
       <FlatList
-        data={seearchResult}
+        data={searchResult}
         renderItem={renderSearchResult}
         numColumns={2}
         style={styles.scrollableContainer}
         ListEmptyComponent={renderMovieCardSkeleton}
         contentContainerStyle={styles.contentContainer}
+        ListFooterComponent={loading ? renderLoadMoreMovieSkeleton : null}
+        onEndReached={loadMore}
       />
     </SafeAreaView>
   );
