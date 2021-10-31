@@ -292,6 +292,8 @@ PODS:
   - React-jsinspector (0.66.1)
   - React-logger (0.66.1):
     - glog
+  - react-native-root-view-background (1.0.4):
+    - React
   - react-native-safe-area-context (3.3.2):
     - React-Core
   - react-native-video (5.2.0):
@@ -453,6 +455,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - "react-native-root-view-background (from `../node_modules/@pnthach95/react-native-root-view-background`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -532,6 +535,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-root-view-background:
+    :path: "../node_modules/@pnthach95/react-native-root-view-background"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-video:
@@ -609,6 +614,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: db2f6e22a534d466fc0e34e622df47d9d20bab2f
   React-jsinspector: 8c0517dee5e8c70cd6c3066f20213ff7ce54f176
   React-logger: bfddd3418dc1d45b77b822958f3e31422e2c179b
+  react-native-root-view-background: 18d9afcd774fa02902b392b3e9f2b236ac0c4236
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-video: a4c2635d0802f983594b7057e1bce8f442f0ad28
   react-native-webview: cc4ac8f021a832dce2979e1f48c5595341dd2fb5
