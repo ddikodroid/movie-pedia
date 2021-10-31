@@ -5616,6 +5616,11 @@ react-native-screens@^3.4.0, react-native-screens@^3.8.0:
   dependencies:
     warn-once "^0.1.0"
 
+react-native-select-dropdown@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-1.2.0.tgz#ac6e1b02dc004206dcc90d68001f048232b7fc1c"
+  integrity sha512-qFbldUJFjcruyEmxQThuUtsPYGt7aGYrVtgDfivuJCodjGJEFed2DvcZUd9JJYk1uWe/OfSxWi2KsXYeoB2ZIw==
+
 react-native-skeleton-placeholder@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/react-native-skeleton-placeholder/-/react-native-skeleton-placeholder-5.0.0.tgz#899fca447c2f0b81f98566e350e792157a3c9df9"
