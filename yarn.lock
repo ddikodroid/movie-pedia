@@ -1006,6 +1006,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@pnthach95/react-native-root-view-background@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@pnthach95/react-native-root-view-background/-/react-native-root-view-background-1.0.4.tgz#1607ef2c4ebdf1b992f29d7eff22bff00e6c468b"
+  integrity sha512-lcfwFY6D2LZaGIrTXHCGwtWrZM6xROJe+HiebmbMwsgZo4kZ1z7OjWvJYocHmO22GZIdwdRcq9idtpPx5Q9znA==
+  dependencies:
+    tinycolor2 "^1.4.2"
+
 "@react-native-community/cli-debugger-ui@^6.0.0-rc.0":
   version "6.0.0-rc.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-6.0.0-rc.0.tgz#774378626e4b70f5e1e2e54910472dcbaffa1536"
@@ -6559,6 +6566,11 @@ through2@^2.0.1:
   dependencies:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
+
+tinycolor2@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
+  integrity sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==
 
 tmpl@1.0.5:
   version "1.0.5"
