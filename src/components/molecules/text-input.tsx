@@ -21,6 +21,7 @@ interface ITextInputProps extends TextInputProps {
   withIcon?: boolean;
   iconName?: string;
   iconSize?: number;
+  style?: StyleProp<ViewStyle>;
   onPressIcon?: () => void;
 }
 
@@ -33,6 +34,7 @@ const TextInput: React.FC<ITextInputProps> = ({
   iconName = 'search',
   iconSize = normalize(16),
   onPressIcon,
+  style,
   ...props
 }) => {
   return (
@@ -42,7 +44,7 @@ const TextInput: React.FC<ITextInputProps> = ({
       {withIcon ? (
         <View style={styles.withIconContainer}>
           <RNTextInput
-            style={styles.textInputWithIcon}
+            style={[styles.textInputWithIcon, style]}
             placeholder={placeholder}
             placeholderTextColor={colors.lightGrey}
             {...props}
