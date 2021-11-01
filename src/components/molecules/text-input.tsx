@@ -42,7 +42,7 @@ const TextInput: React.FC<ITextInputProps> = ({
       {label ? (
         <>
           <Text style={styles.labelText}>{label}</Text>
-          <Gap height={8} />{' '}
+          <Gap height={8} />
         </>
       ) : null}
       {withIcon ? (
@@ -63,7 +63,7 @@ const TextInput: React.FC<ITextInputProps> = ({
         </View>
       ) : (
         <RNTextInput
-          style={styles.rnTextInputContainer}
+          style={[styles.rnTextInputContainer, style]}
           placeholder={placeholder}
           placeholderTextColor={colors.lightGrey}
           {...props}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   rnTextInputContainer: {
     backgroundColor: colors.white,
     borderRadius: normalize(8),
-    paddingVertical: normalize(16),
+    paddingVertical: normalize(8),
     paddingHorizontal: normalize(8),
     fontSize: normalize(15),
     color: colors.darkGrey,
