@@ -129,12 +129,11 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     width: '74%',
-    backgroundColor: 'red',
   },
   textInput: {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
-    marginVertical: 0,
+    padding: 0,
   },
   searchBarContainer: {
     flexDirection: 'row',
