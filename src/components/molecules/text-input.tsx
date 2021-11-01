@@ -39,8 +39,12 @@ const TextInput: React.FC<ITextInputProps> = ({
 }) => {
   return (
     <View style={containerStyle}>
-      <Text style={styles.labelText}>{label}</Text>
-      <Gap height={8} />
+      {label ? (
+        <>
+          <Text style={styles.labelText}>{label}</Text>
+          <Gap height={8} />{' '}
+        </>
+      ) : null}
       {withIcon ? (
         <View style={styles.withIconContainer}>
           <RNTextInput
@@ -65,8 +69,12 @@ const TextInput: React.FC<ITextInputProps> = ({
           {...props}
         />
       )}
-      <Gap height={8} />
-      <Text style={styles.infoMessageText}>{infoMessage}</Text>
+      {infoMessage ? (
+        <>
+          <Gap height={8} />
+          <Text style={styles.infoMessageText}>{infoMessage}</Text>
+        </>
+      ) : null}
     </View>
   );
 };
