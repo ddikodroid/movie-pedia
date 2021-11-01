@@ -29,6 +29,7 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
     if (page > 1) {
       getSearchResult({c: category, q: query, p: page});
@@ -38,6 +39,7 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
   const getSearchResult = ({c, q, p}) => {
     if (query !== '') {
       const cat = c === 'Genre' ? 'category' : c.toLowerCase();
+      setIsFetching(true);
       axios
         .get(
           `https://api-filmapik.herokuapp.com/${cat}?search=${q}&page=${p}&maxResult=20`,
@@ -46,6 +48,7 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
           console.log(response);
           setSearchResult([...searchResult, ...response.data.result]);
           setLoading(false);
+          setIsFetching(false);
         })
         .catch(error => Alert.alert('Request Failed ' + error));
     } else {
@@ -58,6 +61,14 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
     setLoading(true);
     setPage(page + 1);
   };
+
+  const renderInitialHint = () => (
+    <View style={styles.hintContainer}>
+      <Text style={styles.hintText}>1. Choose the category</Text>
+      <Text style={styles.hintText}>2. Type the keyword</Text>
+      <Text style={styles.hintText}>3. Hit search button</Text>
+    </View>
+  );
 
   const renderLoadMoreMovieSkeleton = () => (
     <SkeletonLoader loader={LoadMoreSkeleton} />
@@ -108,7 +119,9 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
         renderItem={renderSearchResult}
         numColumns={2}
         style={styles.scrollableContainer}
-        ListEmptyComponent={page !== 1 ? renderMovieCardSkeleton : null}
+        ListEmptyComponent={
+          loading && isFetching ? renderMovieCardSkeleton : renderInitialHint
+        }
         contentContainerStyle={styles.contentContainer}
         ListFooterComponent={
           loading && page !== 1 ? renderLoadMoreMovieSkeleton : null
@@ -158,5 +171,14 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     justifyContent: 'space-between',
+  },
+  hintText: {
+    color: colors.white,
+    fontSize: normalize(20),
+    marginBottom: normalize(4),
+  },
+  hintContainer: {
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
 });
