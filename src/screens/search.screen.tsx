@@ -113,6 +113,7 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
         contentContainerStyle={styles.contentContainer}
         ListFooterComponent={loading ? renderLoadMoreMovieSkeleton : null}
         onEndReached={loadMore}
+        onEndReachedThreshold={0.2}
       />
     </SafeAreaView>
   );

@@ -93,7 +93,7 @@ const Home = ({navigation}: HomeScreenProps) => {
         ListHeaderComponent={renderHeaderComponent}
         ListFooterComponent={loading ? renderLoadMoreMovieSkeleton : null}
         onEndReached={loadMore}
-        onEndReachedThreshold={0}
+        onEndReachedThreshold={0.2}
       />
     </SafeAreaView>
   );
