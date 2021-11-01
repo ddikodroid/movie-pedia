@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   textInputWithIcon: {
     fontSize: normalize(15),
     width: '95%',
+    color: colors.darkGrey,
   },
 
   withIconContainer: {
