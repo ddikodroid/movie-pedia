@@ -12,6 +12,7 @@ import {Gap} from '../atoms/gap';
 import Icon from 'react-native-dynamic-vector-icons';
 import {normalize} from '../../utils/normalize';
 import {colors} from '../../styles/colors';
+import {isAndroid} from '../../utils/constants';
 
 interface ITextInputProps extends TextInputProps {
   placeholder: string;
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   rnTextInputContainer: {
     backgroundColor: colors.white,
     borderRadius: normalize(8),
-    paddingVertical: normalize(8),
+    paddingVertical: isAndroid ? normalize(12) : normalize(16),
     paddingHorizontal: normalize(8),
     fontSize: normalize(15),
     color: colors.darkGrey,
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.white,
     borderRadius: normalize(8),
-    paddingVertical: normalize(16),
+    paddingVertical: isAndroid ? normalize(11) : normalize(16),
     paddingHorizontal: normalize(8),
   },
   labelText: {
