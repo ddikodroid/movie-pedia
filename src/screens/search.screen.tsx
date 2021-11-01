@@ -30,10 +30,9 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   useEffect(() => {
-    const search = getSearchResult({c: category, q: query, p: page});
-    return () => {
-      search;
-    };
+    if (page > 1) {
+      getSearchResult({c: category, q: query, p: page});
+    }
   }, [page]);
 
   const getSearchResult = ({c, q, p}) => {
@@ -109,9 +108,11 @@ const Search: React.FC<ISearchProps> = ({navigation}) => {
         renderItem={renderSearchResult}
         numColumns={2}
         style={styles.scrollableContainer}
-        ListEmptyComponent={renderMovieCardSkeleton}
+        ListEmptyComponent={page !== 1 ? renderMovieCardSkeleton : null}
         contentContainerStyle={styles.contentContainer}
-        ListFooterComponent={loading ? renderLoadMoreMovieSkeleton : null}
+        ListFooterComponent={
+          loading && page !== 1 ? renderLoadMoreMovieSkeleton : null
+        }
         onEndReached={loadMore}
         onEndReachedThreshold={0.2}
       />
@@ -128,8 +129,13 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     width: '74%',
+    backgroundColor: 'red',
   },
-  textInput: {borderTopRightRadius: 0, borderBottomRightRadius: 0},
+  textInput: {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    marginVertical: 0,
+  },
   searchBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
