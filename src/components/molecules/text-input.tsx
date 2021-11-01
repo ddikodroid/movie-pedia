@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     paddingVertical: normalize(16),
     paddingHorizontal: normalize(8),
     fontSize: normalize(15),
+    color: colors.darkGrey,
   },
   textInputWithIcon: {
     fontSize: normalize(15),
